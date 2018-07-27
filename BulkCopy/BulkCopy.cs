@@ -45,12 +45,10 @@ namespace BulkCopy
                     var column = metadata?.GetType()
                         .GetField("column", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                         ?.GetValue(metadata);
-                    if (column == null)
-                        return false;
-                    var length = metadata.GetType()
+                    var length = metadata?.GetType()
                         .GetField("length", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                         ?.GetValue(metadata);
-                    Console.WriteLine($"Column: {column} contains data with a length greater than: {length} AS Target");
+                    Console.WriteLine($"Column: {column??""} contains data with a length greater than: {length??""} AS Target");
                 }
                 Console.WriteLine($"{ex} AS Target");
                 return false;
